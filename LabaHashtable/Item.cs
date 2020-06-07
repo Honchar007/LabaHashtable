@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace LabaHashtable
+namespace LabaHashTable
 {
     
     public class Item
     {
         
         public string Key { get; private set; }
+
 
         
         public string Value { get; private set; }
