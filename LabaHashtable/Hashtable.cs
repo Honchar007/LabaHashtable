@@ -14,12 +14,12 @@ namespace LabaHashTable
 
         private Dictionary<int, List<Item>> _items = null;
 
-        public IReadOnlyCollection<KeyValuePair<int, List<Item>>> Items => _items?.ToList()?.AsReadOnly();
+       
         
         public HashTable()
         {
            
-            _items = new Dictionary<int, List<Item>>(_maxSize); //////////////////////////////////
+            _items = new Dictionary<int, List<Item>>(_maxSize);
         }
 
         public void Insert(string key, string value)

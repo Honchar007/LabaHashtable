@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,37 +9,33 @@ namespace LabaHashTable
 {
     class Program
     {
-        
-        static void Main(string[] args)
-        {int n = 10000;
-            var hashTable = new HashTable();
-            var rand = new Random();
-            int x1,x2;
-            for (int i = 0; i < n; i++)
+        static HashTable ReadText(HashTable hashTable)
+        {
+            string str = File.ReadAllText("test.txt");
+            string[] wordSplit = str.Split(new char[] { '-', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < wordSplit.Length; i++)
             {
-                x1 = rand.Next(0, n);
-               
-
-                hashTable.Insert(""+i, ""+i);
+                hashTable.Insert(wordSplit[i], wordSplit[i+1]);
+                i++;
             }
-                x2 = rand.Next(0, n);
            
-            Console.WriteLine(hashTable.Search("" + x2));
-            x2 = rand.Next(0, n);
+            
+            return hashTable;
+        }
 
-            Console.WriteLine(hashTable.Search("" +x2));
-            x2 = rand.Next(0, n);
-
-            Console.WriteLine(hashTable.Search("" + x2));
-
-
-
-
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            int n = 10000;
+            var hashTable = new HashTable();
+            hashTable = ReadText(hashTable);
+           string s = Console.ReadLine();
+            string[] wordSplit = s.Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in wordSplit)
+            {
+                Console.WriteLine(hashTable.Search(item) );
+            }
             Console.ReadLine();
-
-
-
-
             Console.WriteLine("Hello world");
             Console.ReadLine();
         }
